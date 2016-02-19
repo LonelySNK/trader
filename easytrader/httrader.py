@@ -42,7 +42,8 @@ class HTTrader(WebTrader):
     def __init__(self):
         super(HTTrader, self).__init__()
         self.account_config = None
-        self.s = None
+        self.s = requests.session()
+        self.s.mount('https://', helpers.Ssl3HttpAdapter())
 
         self.__set_ip_and_mac()
         self.fund_account = None
